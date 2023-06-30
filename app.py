@@ -21,7 +21,6 @@ def send_email():
     name = request.form['name']
     email = request.form['email']
     message = request.form['message']
-
     msg = Message('New Portfolio Contact',
                   sender=email,
                   recipients=['prakruthisomashekar29@gmail.com'])
