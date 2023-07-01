@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Hyperspace by HTML5 UP</title>
+		<title>Prakruthi Somashekaraish</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -18,7 +18,7 @@
 							<li><a href="#one">Experience</a></li>
 							<li><a href="#two">Projects</a></li>
 							<li><a href="#three">Certifications</a></li>
-							<li><a href="#four">Certifications</a></li>
+							<li><a href="#four">Contact</a></li>
 
 						</ul>
 					</nav>
@@ -229,15 +229,7 @@
 				  <section id="four" class="wrapper style1 fade-up" style="background-color: #a986b5;">
 					<div class="inner">
 						<h1>Get in touch</h1>
-						<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
-						
-
-						<!-- <form action="/send-email" method="post">
-							<input type="text" name="name" placeholder="Name" required><br>
-							<input type="email" name="email" placeholder="Email" required><br>
-							<textarea name="message" placeholder="Message" required></textarea><br>
-							<button type="submit">Send Email</button> -->
-						</form>
+						<!-- <p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p> -->
 								<form method="post" action="/send-email">
 									<div class="fields">
 										<div class="field half">
@@ -258,6 +250,62 @@
 					  
 					</div>
 				  </section>
+
+				  <script>
+					// Function to handle form submission
+					function sendEmail(event) {
+						event.preventDefault();
+			
+						// Extract form data
+						var name = document.getElementById("name").value;
+						var email = document.getElementById("email").value;
+						var message = document.getElementById("message").value;
+			
+						// Construct the JSON payload
+						var payload = {
+							"personalizations": [
+								{
+									"to": [
+										{
+											"email": "prakruthisomashekar29@Gmail.com"
+										}
+									],
+									"subject": name + ": Proftfolio Message"
+								}
+							],
+							"from": {
+								"email": email
+							},
+							"content": [
+								{
+									"type": "text/html",
+									"value": message
+								}
+							]
+						};
+			
+						// Send the email using SendGrid API
+						$.ajax({
+							url: "https://api.sendgrid.com/v3/mail/send",
+							type: "POST",
+							beforeSend: function (xhr) {
+								xhr.setRequestHeader("Content-Type", "application/json");
+								xhr.setRequestHeader("Authorization", "Bearer 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");
+							},
+							data: JSON.stringify(payload),
+							success: function () {
+								alert("Email sent successfully!");
+							},
+							error: function (xhr, status, error) {
+								console.log(xhr.responseText);
+								alert("Failed to send email. Please try again later.");
+							}
+						});
+					}
+			
+					// Bind the form submission to the sendEmail function
+					document.getElementById("contact-form").addEventListener("submit", sendEmail);
+				</script>
 				  
 
 			</div>
